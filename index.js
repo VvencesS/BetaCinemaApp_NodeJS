@@ -27,9 +27,12 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 app.use(cookieParser(process.env.SESSION_SECRET));
 
+// Models
+const TaiKhoan = require('./models/taikhoan.model');
 
-app.get('/', (req, res) => {
-    res.send('Trần Đức Soạn');
+app.get('/', async (req, res) => {
+    let taiKhoan = await TaiKhoan.find();
+    res.json(taiKhoan);
 });
 
 // Call api
