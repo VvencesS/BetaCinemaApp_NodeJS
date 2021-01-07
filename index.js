@@ -14,28 +14,21 @@ mongoose.connect(process.env.MONGO_URL, {
 const app = express();
 const port = 3000;
 
+// Route
+const route = require('./api/routes/index.route');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true,
 }))
-
-// Routes
-
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 app.use(cookieParser(process.env.SESSION_SECRET));
 
-// Models
-const TaiKhoan = require('./models/taikhoan.model');
-
-app.get('/', async (req, res) => {
-    let taiKhoan = await TaiKhoan.find();
-    res.json(taiKhoan);
-});
-
-// Call api
+// init routes call api
+route(app);
 
 
 app.listen(port, () => {

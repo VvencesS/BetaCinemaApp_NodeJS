@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
-var taiKhoanSchema = new mongoose.Schema({
-	sothethanhvien: String,
-	hoten: String,
-	email: String,
-	matkhau: String,
-    sodienthoai: String,
-    ngaysinh: Date,
-    gioitinh: String,
-    cmt: String,
-    tinhthanhpho_id: String,
-    quanhuyen_id: String,
-    diachilienhe: String,
-    anhdaidien: String,
+var phimSchema = new mongoose.Schema({
+	tenphim: String,
+	gioihantuoi: String,
+	daodien: String,
+	dienvien: String,
+    theloai: String,
+    thoiluong: String,
+    ngonngu: String,
+    ngaykhoichieu: String,
+    ngaychieusom: String,
+    mota: String,
+    linktrailer: String,
+    anhphim: String,
 });
 
-var TaiKhoan = mongoose.model('TaiKhoan', taiKhoanSchema, 'taikhoan');
+var Phim = mongoose.model('Phim', phimSchema, 'phim');
 
-module.exports = TaiKhoan;
+module.exports = Phim;
