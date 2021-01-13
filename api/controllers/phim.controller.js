@@ -17,3 +17,82 @@ module.exports.getMovieById = async (req, res, next) => {
         data: phim,
     });
 };
+
+module.exports.getAllNowShowingMovie = async (req, res, next) => {
+    let dateNow = new Date();
+    try {
+        const phim = await Phim.find();
+        const nowShowingMovie = await phim.filter((item) => {
+            let ngayKhoiChieuArr = item.ngaykhoichieu.split('/');
+            let ngayKhoiChieu = Date.parse(
+                parseInt(ngayKhoiChieuArr[2]) + '-' +
+                parseInt(ngayKhoiChieuArr[1]) + '-' +
+                parseInt(ngayKhoiChieuArr[0])
+            );
+            return ngayKhoiChieu < dateNow;
+        });
+        res.json({
+            message: 'Lấy dữ liệu thành công!',
+            success: 1,
+            data: nowShowingMovie,
+        });
+    } catch (err) {
+        res.json({
+            message: err.message,
+            success: 0,
+        });
+    }
+};
+
+module.exports.getAllComingSoonMovie = async (req, res, next) => {
+    let dateNow = new Date();
+    try {
+        const phim = await Phim.find();
+        const nowShowingMovie = await phim.filter((item) => {
+            let ngayKhoiChieuArr = item.ngaykhoichieu.split('/');
+            let ngayKhoiChieu = Date.parse(
+                parseInt(ngayKhoiChieuArr[2]) + '-' +
+                parseInt(ngayKhoiChieuArr[1]) + '-' +
+                parseInt(ngayKhoiChieuArr[0])
+            );
+            return ngayKhoiChieu > dateNow;
+        });
+        res.json({
+            message: 'Lấy dữ liệu thành công!',
+            success: 1,
+            data: nowShowingMovie,
+        });
+    } catch (err) {
+        res.json({
+            message: err.message,
+            success: 0,
+        });
+    }
+};
+
+module.exports.getAllSneakShowMovie = async (req, res, next) => {
+    let dateNow = new Date();
+    try {
+        const phim = await Phim.find();
+        const nowShowingMovie = await phim.filter((item) => {
+            if (item.ngaychieusom == "") return false;
+            let ngayKhoiChieuArr = item.ngaykhoichieu.split('/');
+            let ngayKhoiChieu = Date.parse(
+                parseInt(ngayKhoiChieuArr[2]) + '-' +
+                parseInt(ngayKhoiChieuArr[1]) + '-' +
+                parseInt(ngayKhoiChieuArr[0])
+            );
+            return ngayKhoiChieu > dateNow;
+        });
+        res.json({
+            message: 'Lấy dữ liệu thành công!',
+            success: 1,
+            data: nowShowingMovie,
+        });
+    } catch (err) {
+        res.json({
+            message: err.message,
+            success: 0,
+        });
+    }
+};
