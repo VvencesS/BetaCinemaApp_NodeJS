@@ -30,6 +30,9 @@ app.use(bodyParser.urlencoded({
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// Config đường dẫn tới file tĩnh
+app.use(express.static('public'));
+
 app.use(cookieParser(process.env.SESSION_SECRET));
 
 // init routes call api

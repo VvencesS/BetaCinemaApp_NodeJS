@@ -4,8 +4,6 @@ const router = express.Router();
 const controller = require('../controllers/phim.controller');
 
 router.get('/', controller.index);
-// router.post('/', controller.create);
-// router.put('/:id', controller.update);
-// router.delete('/:id', controller.delete);
+router.post('/:id', controller.getMovieById);
 
 module.exports = router;
