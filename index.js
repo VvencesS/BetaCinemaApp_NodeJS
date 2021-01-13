@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
 });
 
 const app = express();
@@ -16,6 +18,9 @@ const port = 3000;
 
 // Route
 const route = require('./api/routes/index.route');
+
+// Middleware
+const requireToken = require('./api/middleware/requireToken');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
