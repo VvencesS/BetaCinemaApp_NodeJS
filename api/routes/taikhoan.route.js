@@ -7,6 +7,6 @@ router.get('/', controller.index);
 router.post('/signup', controller.signup);
 router.post('/signin', controller.signin);
 router.put('/:id', controller.update);
-// router.delete('/:id', controller.delete);
+router.put('/update', controller.update);
 
 module.exports = router;
