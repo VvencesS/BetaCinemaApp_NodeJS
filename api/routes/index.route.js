@@ -10,9 +10,7 @@ function route(app) {
   app.use('/api/phim', phimRoute);
   app.use('/api/slide', slideRoute);
   app.use('/api/tintucvauudai', tinTucVaUuDaiRoute);
-  app.use('/', requireToken, (req, res) => {
-    res.send({ email: req.taiKhoan.email });
-  });
+  app.use('/', authRoute);
 }
 
 module.exports = route;

@@ -32,9 +32,8 @@ module.exports.getAllNowShowingMovie = async (req, res, next) => {
             return ngayKhoiChieu < dateNow;
         });
         res.json({
-            message: 'Lấy dữ liệu thành công!',
             success: 1,
-            data: nowShowingMovie,
+            nowShowingMovie,
         });
     } catch (err) {
         res.json({
@@ -48,7 +47,7 @@ module.exports.getAllComingSoonMovie = async (req, res, next) => {
     let dateNow = new Date();
     try {
         const phim = await Phim.find();
-        const nowShowingMovie = await phim.filter((item) => {
+        const comingSoonMovie = await phim.filter((item) => {
             let ngayKhoiChieuArr = item.ngaykhoichieu.split('/');
             let ngayKhoiChieu = Date.parse(
                 parseInt(ngayKhoiChieuArr[2]) + '-' +
@@ -58,9 +57,8 @@ module.exports.getAllComingSoonMovie = async (req, res, next) => {
             return ngayKhoiChieu > dateNow;
         });
         res.json({
-            message: 'Lấy dữ liệu thành công!',
             success: 1,
-            data: nowShowingMovie,
+            comingSoonMovie,
         });
     } catch (err) {
         res.json({
@@ -74,7 +72,7 @@ module.exports.getAllSneakShowMovie = async (req, res, next) => {
     let dateNow = new Date();
     try {
         const phim = await Phim.find();
-        const nowShowingMovie = await phim.filter((item) => {
+        const sneakShowMovie = await phim.filter((item) => {
             if (item.ngaychieusom == "") return false;
             let ngayKhoiChieuArr = item.ngaykhoichieu.split('/');
             let ngayKhoiChieu = Date.parse(
@@ -85,9 +83,8 @@ module.exports.getAllSneakShowMovie = async (req, res, next) => {
             return ngayKhoiChieu > dateNow;
         });
         res.json({
-            message: 'Lấy dữ liệu thành công!',
             success: 1,
-            data: nowShowingMovie,
+            sneakShowMovie,
         });
     } catch (err) {
         res.json({

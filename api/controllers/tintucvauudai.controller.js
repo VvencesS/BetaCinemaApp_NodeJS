@@ -15,9 +15,8 @@ module.exports.getAllOffers = async (req, res) => {
         item => item.loaitmvakm === "Khuyến mại mới"
     );
     res.json({
-        message: 'Lấy dữ liệu thành công!',
         success: 1,
-        data: offers,
+        offers,
     });
 };
 
@@ -27,9 +26,8 @@ module.exports.getAllNews = async (req, res) => {
         item => item.loaitmvakm === "Tin bên lề"
     );
     res.json({
-        message: 'Lấy dữ liệu thành công!',
         success: 1,
-        data: news,
+        news,
     });
 };
 
